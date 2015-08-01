@@ -1,0 +1,15 @@
+<% #title "Assets" %> 
+<table> 
+  <tr> 
+    <th>Uploaded Files</th> 
+  </tr> 
+  <% for cabinet in @cabinets %> 
+    <tr> 
+      <td><%= link_to cabinet.uploaded_file_file_name, cabinet.uploaded_file.url %></td> 
+      <td><%= link_to "Show", cabinet %></td> 
+      <td><%= link_to "Edit", edit_cabinet_path(cabinet) %></td> 
+      <td><%= link_to "Destroy", cabinet, :confirm => 'Are you sure?', :method => :delete %></td> 
+    </tr> 
+  <% end %> 
+</table> 
+<p><%= link_to "New Asset", new_cabinet_path %></p>
