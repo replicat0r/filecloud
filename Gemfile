@@ -8,6 +8,9 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem "paperclip", "~> 4.3"
 gem 'devise'
+gem 'bootstrap-material-design'
+
+
 
 group :development, :test do
   gem 'byebug'
