@@ -9,7 +9,7 @@ gem 'jbuilder', '~> 2.0'
 gem "paperclip", "~> 4.3"
 gem 'devise'
 gem 'bootstrap-material-design'
-
+gem 'acts_as_tree', '~> 2.2.0'
 
 
 group :development, :test do

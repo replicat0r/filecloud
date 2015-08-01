@@ -6,5 +6,9 @@ class Cabinet < ActiveRecord::Base
   validates_attachment_presence :uploaded_file
   do_not_validate_attachment_file_type :uploaded_file
 
+  def file_size
+    uploaded_file_file_size
+  end
+
 
 end
