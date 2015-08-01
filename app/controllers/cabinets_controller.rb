@@ -25,6 +25,18 @@ class CabinetsController < ApplicationController
 
   end
 
+  def get
+    cabinet = current_user.cabinets.find_by_id(params[:id])
+    if cabinet
+      send_file cabinet.uploaded_file.path, :type => cabinet.uploaded_file_content_type
+
+    else
+      flash[:error] = "Don't be cheeky! Mind your own assets!"
+      redirect_to root_path
+    end
+
+  end
+
   def edit
     @cabinet = current_user.cabinets.find(params[:id])
   end
@@ -36,6 +48,9 @@ class CabinetsController < ApplicationController
 
   def destroy
     @cabinet = current_user.cabinets.find(params[:id])
+    @cabinet.destroy
+    redirect_to authenticate_root
+
 
   end
 

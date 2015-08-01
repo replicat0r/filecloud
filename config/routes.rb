@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     end
   end
 
+  match 'cabinets/get/:id' => "cabinets#get", :as => "download" ,via: [:get]
+
 end
