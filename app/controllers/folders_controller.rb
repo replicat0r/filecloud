@@ -7,15 +7,36 @@ class FoldersController < ApplicationController
 
   def show
     @folder = current_user.folders.find(params[:id])
+
+
   end
 
   def new
     @folder = current_user.folders.new
+
+    if params[:folder_id]
+      @current_folder = current_user.folders.find(params[:folder_id])
+      @folder.parent_id = @current_folder.id
+    end
   end
 
   def create
-    @folder = current_user.folders.create(folder_params)
-    redirect_to root_path
+    @folder = current_user.folders.build(folder_params)
+
+    if params[:folder_id]
+      @current_folder = current_user.folders.find(params[:folder_id])
+      @folder.parent_id = @current_folder.id
+    end
+    if @folder.save
+      flash[:notice] = "Successfully created folder."
+      if @folder.parent
+        redirect_to browse_path(@folder.parent)
+      else
+        redirect_to root_path
+      end
+    else
+      render 'new'
+    end
 
   end
 
@@ -35,6 +56,6 @@ class FoldersController < ApplicationController
 
   private
   def folder_params
-  	params.require(:folder).permit(:name)
+    params.require(:folder).permit(:name,:parent_id)
   end
 end

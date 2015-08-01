@@ -1,0 +1,16 @@
+<% if @current_folder %>
+  <%= link_to "ShareBox", root_url %> 
+
+	<% @current_folder.ancestors.reverse.each do |folder| %>
+
+	 » <%= link_to(folder.name, browse_path(folder)) %>
+
+	 <% end %>
+
+	  » <%= @current_folder.name %>
+
+	 <% else %>
+
+	 Share Box
+
+<% end %>
