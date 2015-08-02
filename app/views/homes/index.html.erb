@@ -4,7 +4,13 @@
   <p>File sharing web application you can't ignore.</p>
 </div>
 <% else %>
-<div id="menu">
+<div class="row">
+
+<div class="col-sm-7">
+<%= render :partial => "breadcrumbs" %>
+</div>
+
+<div id="menu" class="pull-right">
   <ul id= "top_menu">
     <% if @current_folder %>
     <li><%= link_to '<i class="fa fa-cloud-upload"></i> Upload'.html_safe, new_sub_file_path(@current_folder),class: 'btn btn-info btn-xs'  %></li>
@@ -15,9 +21,11 @@
     <% end %>
   </ul>
 </div>
-<%= render :partial => "breadcrumbs" %>
 
-<div class="col-sm-12">
+<div class="clear"></div>
+
+</div>
+<div class="col-sm-12 table-container">
 <table class="table">
   <thead>
     <tr>
