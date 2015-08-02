@@ -11,6 +11,7 @@ gem 'devise'
 gem 'bootstrap-material-design'
 gem 'acts_as_tree', '~> 2.2.0'
 
+gem 'toastr-rails'
 
 group :development, :test do
   gem 'byebug'

@@ -38,7 +38,7 @@ main {
   background-color: #eee;
   padding-bottom: 80px;
   width: 100%;
-  margin-top: 51px; // accommodate the navbar
+  margin-top: 20px; // accommodate the navbar
   }
 section {
   @extend .row;
@@ -47,7 +47,7 @@ section {
 
 
   .asset_list_header, .asset_list, .asset_details { 
-    width:800px; 
+    width:100%; 
     font-weight:bold; 
     font-size:12px; 
     overflow:hidden; 
@@ -74,7 +74,7 @@ section {
     height:25px; 
     line-height:25px; 
     border:1px solid #FFF; 
-    width:790px; 
+    width:80%; 
     color:#4F4F4F; 
 } 
   
@@ -84,14 +84,14 @@ section {
     font-size:12px; 
 }
 
-.breadcrumbs { 
-   margin:10px 0; 
-   font-weight:bold; 
-} 
-.breadcrumbs a { 
-   color:#1D96EF; 
-   text-decoration:none; 
-}
+// .breadcrumbs { 
+//    margin:10px 0; 
+//    font-weight:bold; 
+// } 
+// .breadcrumbs a { 
+//    color:#1D96EF; 
+//    text-decoration:none; 
+// }
 
 .actions { 
     float:right; 
@@ -118,4 +118,42 @@ section {
 .asset_details .delete a:hover{ 
     color:#BF0B12; 
     border:1px solid #FF8F93; 
+}
+
+#menu { 
+    padding:0 20px; 
+    margin:20px auto ; 
+    overflow:hidden; 
+} 
+#menu ul{ 
+    padding:0; 
+    margin:0; 
+} 
+#menu ul li { 
+    list-style:none; 
+    float:left; 
+    display:block; 
+    margin-right:10px; 
+  
+  
+} 
+#menu ul li a, #menu ul li a:visited{ 
+    display:block; 
+    padding:0 15px; 
+    line-height:25px; 
+    text-decoration:none; 
+    color:#45759F; 
+    background:#EFF8FF; 
+    border:1px solid #CFEBFF; 
+} 
+#menu ul li a:hover, #menu ul li a:active{ 
+    background:#DFF1FF; 
+    border:1px solid #AFDDFF; 
+}
+
+.logo{
+  color:#3498db;
+}
+#login_user_status{
+  padding:20px;
 }

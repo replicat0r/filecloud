@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShareBox | <%= content_for?(:title) ? yield(:title) : "File-sharing web app" %></title>
+  <title>FileCloud | <%= content_for?(:title) ? yield(:title) : "File-sharing web app" %></title>
 
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Filecloud" %>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -14,12 +14,29 @@
   </head>
   <body>
     <header>
-      <%= render 'layouts/navigation' %>
+      <%# render 'layouts/navigation' %>
     </header>
+
+    <% unless flash.empty? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+         toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+    </script>
+   <% end %>
+  
     <main role="main">
+
     <div class="container">
+
     <div class="well">
-       <%= render 'layouts/messages' %>
+    <div class="row">
+        <h1 class="logo col-sm-8"> <i class="fa fa-cloud"></i> File Cloud </h1>
+                <%= render 'layouts/login_status' %>
+
+</div>
+
        <%= yield %>
        </div>
        </div>
