@@ -20,7 +20,7 @@
 
 $(document).ready(function() {
 	
-	
+	$.material.init()
 	 toastr.options = {
 	                  "closeButton": false,
 	                  "debug": false,

@@ -1,5 +1,6 @@
 class FoldersController < ApplicationController
   before_filter :authenticate_user!
+  respond_to :js, :html
 
   def index
     @folders = current_user.folders
@@ -18,6 +19,7 @@ class FoldersController < ApplicationController
       @current_folder = current_user.folders.find(params[:folder_id])
       @folder.parent_id = @current_folder.id
     end
+
   end
 
   def create

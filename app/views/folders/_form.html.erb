@@ -1,18 +1,29 @@
-<%= form_for @folder do |f| %> 
- <%# f.error_messages %> 
- <p> 
-    <%= f.label :name %><br /> 
-    <%= f.text_field :name %> 
- </p> 
-    <%= f.hidden_field :parent_id %> 
+<%= form_for @folder ,class: " form " do |f| %>
+<%# f.error_messages %>
 
- <p>
- 	
-<% if @folder.new_record? %> 
-   <%= f.submit "Create Folder" %> 
-<% else %> 
-   <%= f.submit "Rename Folder" %> 
-<% end %> 
- 	
- </p> 
+<div class="form-control-wrapper">
+	
+
+
+	<%= f.text_field :name ,class:"form-control empty" %>
+	
+
+
+<div class="floating-label">What is the name of the new folder?</div>
+
+<span class="material-input"></span>
+	<%= f.hidden_field :parent_id %>
+</div>
+
+
+ <div class="modal-footer">
+
+ <% if @folder.new_record? %>
+<%= f.submit "Create Folder" ,class:"btn btn-info btn-sm" %>
+<% else %>
+<%= f.submit "Rename Folder",class:"btn btn-info btn-sm" %>
+<% end %>
+      </div>
+
+
 <% end %>
