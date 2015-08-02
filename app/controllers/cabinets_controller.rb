@@ -33,10 +33,6 @@ class CabinetsController < ApplicationController
       render :action => 'new'
 
     end
-
-
-
-
   end
 
   def get
@@ -62,8 +58,14 @@ class CabinetsController < ApplicationController
 
   def destroy
     @cabinet = current_user.cabinets.find(params[:id])
+    @parent_folder = @cabinet.folder
     @cabinet.destroy
-    redirect_to authenticate_root
+    flash[:notice] = "Successfully deleted the file."
+    if @parent_folder
+      redirect_to browse_path(@parent_folder)
+    else
+      redirect_to root_path
+    end
 
 
   end
