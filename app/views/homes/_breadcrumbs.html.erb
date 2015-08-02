@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
 
 <% if @current_folder %>
-<%= link_to "Root", root_url %> <i class="fa fa-angle-double-right"></i>
+<%= link_to "File Cloud", root_url %> <i class="fa fa-angle-right"></i>
 	<% @current_folder.ancestors.reverse.each do |folder| %>
 	<li><%= link_to(folder.name, browse_path(folder)) %></li>
 	<% end %>

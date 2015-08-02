@@ -6,6 +6,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Filecloud" %>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/css/animsition.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/js/jquery.animsition.min.js"></script>
@@ -13,9 +14,7 @@
   </head>
   <body>
     <%= render 'folders/create_folder'  %>
-    <header>
-      <%# render 'layouts/navigation' %>
-    </header>
+
     <% unless flash.empty? %>
     <script type="text/javascript">
     <% flash.each do |f| %>
@@ -27,7 +26,6 @@
     
     <main role="main" class="">
     <div class="container">
-      <div class="well ">
         <div class="row">
           <h1 class="logo col-sm-8"> <i class="fa fa-cloud"></i> File Cloud </h1>
           <%= render 'layouts/login_status' %>
@@ -35,7 +33,6 @@
         <div class="animsition">
         <%= yield %>
         </div>
-      </div>
     </div>
     </main>
   </body>

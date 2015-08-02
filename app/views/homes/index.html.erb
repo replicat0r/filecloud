@@ -1,8 +1,7 @@
 <% unless user_signed_in? %>
 <div class="text-center">
-<h3>Welcome to File Cloud</h3>
-<p>File sharing web application you can't ignore.</p>
-
+  <h3>Welcome to File Cloud</h3>
+  <p>File sharing web application you can't ignore.</p>
 </div>
 <% else %>
 <div id="menu">
@@ -17,48 +16,95 @@
   </ul>
 </div>
 <%= render :partial => "breadcrumbs" %>
-<div class="asset_list_header">
-  <div class="file_name_header">File Name</div>
-  <div class="file_size_header">Size</div>
-  <div class="file_last_updated_header">Modified</div>
-</div>
-<div class="asset_list">
-  <% @folders.each_with_index do |folder,i| %>
-  <div class="asset_details folder">
-    <div class="file_name"><i class="fa fa-folder-o"></i> 
 
-
-    <%=  %>
-
-
-    <%= link_to (best_in_place folder, :name, :as => :input, :activator => ".edit#{i}", :path => rename_folder_path(folder)), browse_path(folder) %></div>
-    <div class="file_size"> - </div>
-    <div class="file_last_updated"> - </div>
-    <div class="actions">
-      <div class="share">
-        <%= link_to "Share" %>
-      </div>
-      <div class="rename">
-        <a href="#" class="edit<%="#{i}" %>">Edit</a>
-        <%# link_to "Rename", rename_folder_path(folder) %>
-      </div>
-      <div class="delete">
-      <%= link_to "Delete", folder, :confirm => 'Are you sure?', :method => :delete %>           </div>
-    </div>
+<div class="col-sm-12">
+<table class="table">
+  <thead>
+    <tr>
+      <th>File Name</th>
+      <th>Size</th>
+      <th>Modified</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @folders.each_with_index do |folder,i| %>
+    <tr>
+      <td class=""><i class="fa fa-folder-o"></i>
+      <%= link_to (best_in_place folder, :name, :as => :input, :activator => ".edit#{i}", :path => rename_folder_path(folder)), browse_path(folder) %></td>
+      <td class=""> - </td>
+      <td class=""> - </td>
+      <td class="action">
+        <span class="">
+          <%= link_to "Share" %>
+        </span>
+        <span class="">
+          <a href="#" class="edit<%="#{i}" %>">Edit</a>
+          <%# link_to "Rename", rename_folder_path(folder) %>
+        </span>
+        <span class="">
+        <%= link_to "Delete", folder, :confirm => 'Are you sure?', :method => :delete %>
+        </span>
+      </td>
+    </tr>
+    <% end %>
+    <% @cabinets.each do |cabinet| %>
+    <tr>
+      <td class=""><i class="fa fa-file-o">  </i>  <%= link_to cabinet.uploaded_file_file_name, download_url(cabinet) %></td>
+      <td class=""><%= number_to_human_size(cabinet.file_size, :precision => 2)%></td>
+      <td class=""><%= cabinet.uploaded_file_updated_at %></td>
+      <td class="action">
+        <span class="">
+          <%= link_to "Download", download_url(cabinet) %>
+        </span>
+        <span class="">
+        <%= link_to "Delete", cabinet, :confirm => 'Are you sure?', :method => :delete %>           </span>
+      </td>
+      </tr>
+      <% end %>
+    </tbody>
+    
+  </table>
   </div>
-  <% end %>
-  <% @cabinets.each do |cabinet| %>
-  <div class="asset_details">
-    <div class="file_name"><i class="fa fa-file-o">  </i>  <%= link_to cabinet.uploaded_file_file_name, download_url(cabinet) %></div>
-    <div class="file_size"><%= number_to_human_size(cabinet.file_size, :precision => 2)%></div>
-    <div class="file_last_updated"><%= cabinet.uploaded_file_updated_at %></div>
-    <div class="actions">
-      <div class="download">
-        <%= link_to "Download", download_url(cabinet) %>
+  <!--
+  <div class="asset_list_header">
+    <div class="file_name_header">File Name</div>
+    <div class="file_size_header">Size</div>
+    <div class="file_last_updated_header">Modified</div>
+  </div>
+  --><!--
+  <div class="asset_list">
+    <% @folders.each_with_index do |folder,i| %>
+    <div class="asset_details folder">
+      <div class="file_name"><i class="fa fa-folder-o"></i>
+      <%= link_to (best_in_place folder, :name, :as => :input, :activator => ".edit#{i}", :path => rename_folder_path(folder)), browse_path(folder) %></div>
+      <div class="file_size"> - </div>
+      <div class="file_last_updated"> - </div>
+      <div class="actions">
+        <div class="share">
+          <%= link_to "Share" %>
+        </div>
+        <div class="rename">
+          <a href="#" class="edit<%="#{i}" %>">Edit</a>
+          <%# link_to "Rename", rename_folder_path(folder) %>
+        </div>
+        <div class="delete">
+        <%= link_to "Delete", folder, :confirm => 'Are you sure?', :method => :delete %>           </div>
       </div>
-      <div class="delete">
-      <%= link_to "Delete", cabinet, :confirm => 'Are you sure?', :method => :delete %>           </div>
     </div>
     <% end %>
-  </div>
-  <% end %>
+    <% @cabinets.each do |cabinet| %>
+    <div class="asset_details">
+      <div class="file_name"><i class="fa fa-file-o">  </i>  <%= link_to cabinet.uploaded_file_file_name, download_url(cabinet) %></div>
+      <div class="file_size"><%= number_to_human_size(cabinet.file_size, :precision => 2)%></div>
+      <div class="file_last_updated"><%= cabinet.uploaded_file_updated_at %></div>
+      <div class="actions">
+        <div class="download">
+          <%= link_to "Download", download_url(cabinet) %>
+        </div>
+        <div class="delete">
+        <%= link_to "Delete", cabinet, :confirm => 'Are you sure?', :method => :delete %>           </div>
+      </div>
+      <% end %>
+    </div> -->
+    <% end %>

@@ -2,6 +2,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+html, body{
+  font-family: "Roboto",sans-sarif;
+}
+
 // make all images responsive by default
 img {
   @extend .img-responsive;
@@ -35,20 +39,24 @@ img {
 // to make views framework-neutral
 main {
   @extend .container;
-  background-color: #eee;
+  background-color:white;
   padding-bottom: 80px;
   width: 100%;
-  margin-top: 20px; // accommodate the navbar
+  min-height: 95vh;
+
   }
 section {
   @extend .row;
   margin-top: 20px;
   }
 
+  .asset_list_header{
+    font-size: 15px;
+    @extend .text-muted;
 
-  .asset_list_header, .asset_list, .asset_details { 
+  }
+ .asset_list, .asset_details { 
     width:100%; 
-    font-weight:bold; 
     font-size:12px; 
     overflow:hidden; 
   
@@ -60,12 +68,12 @@ section {
   }
 }
 .file_name_header, .file_name { 
-    width:350px; 
+    width:25%; 
     float:left; 
     padding-left:20px; 
 } 
 .file_size_header, .file_size { 
-    width:100px; 
+    width:25%; 
     float:left; 
 } 
 .file_last_updated_header, .file_last_updated { 
@@ -99,9 +107,11 @@ section {
 //    text-decoration:none; 
 // }
 
-.actions { 
-    float:right; 
-    font-size:11px; 
+.action { 
+  span{
+    padding:10px 5px;
+  }
+
 } 
 .share, .rename, .download, .delete{ 
     float:left;  
@@ -161,7 +171,7 @@ section {
   color:#3498db;
 }
 #login_user_status{
-  padding:20px;
+  padding:30px;
 }
 
 
@@ -190,4 +200,18 @@ section {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
     transform: translate(0, 0);
+}
+
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td{
+
+  border-top:none!important;
+}
+
+thead {
+  tr{
+      @extend .text-muted;
+      font-weight: 100;
+      font-size: 120%;
+
+  }
 }
