@@ -1,8 +1,12 @@
-<%= form_for @cabinet, :html => {:multipart => true} do |f| %> 
-  <%# f.error_messages %> 
-    <p> 
-        <%= f.label :uploaded_file, "File" %><br /> 
-        <%= f.file_field :uploaded_file %> 
-      </p> 
-  <p><%= f.submit "Upload" %></p> 
+<%= render "homes/breadcrumbs" %> 
+
+
+<%= render 'cabinets/form' %>
+
+<% if @cabinet.folder %>
+	   <%= link_to "Back to '#{@cabinet.folder.name}' Folder", browse_path(@cabinet.folder) %> 
+
+<% else %>
+   <%= link_to "Back", root_url %> 
+
 <% end %>

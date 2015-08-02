@@ -2,11 +2,6 @@ class CabinetsController < ApplicationController
   before_filter :authenticate_user!  #authenticate for users before any methods is called
 
   def index
-  end
-
-
-
-  def index
     @cabinets = current_user.cabinets
   end
 
@@ -16,11 +11,30 @@ class CabinetsController < ApplicationController
 
   def new
     @cabinet = current_user.cabinets.new
+
+    if params[:folder_id]
+      @current_folder = current_user.folders.find(params[:folder_id])
+      @cabinet.folder_id = @current_folder.id
+    end
   end
 
   def create
-    @cabinet = current_user.cabinets.create(cabinet_params)
-    redirect_to :back
+    @cabinet = current_user.cabinets.build(cabinet_params)
+    flash[:notice] = "Successfully uploaded the file."
+    if @cabinet.save
+      if @cabinet.folder
+        redirect_to browse_path(@cabinet.folder)
+      else
+
+        redirect_to root_path
+      end
+
+    else
+      render :action => 'new'
+
+    end
+
+
 
 
   end
@@ -60,6 +74,6 @@ class CabinetsController < ApplicationController
   # Be sure to update your create() and update() controller methods.
 
   def cabinet_params
-    params.require(:cabinet).permit(:uploaded_file)
+    params.require(:cabinet).permit(:uploaded_file,:folder_id)
   end
 end
