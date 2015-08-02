@@ -15,12 +15,15 @@
 //= require bootstrap-sprockets
 //= require bootstrap-material-design
 //= require toastr
+//= require best_in_place
 //= require_tree .
 
 
 $(document).ready(function() {
 	
 	$.material.init()
+	$(".best_in_place").best_in_place();
+
 	 toastr.options = {
 	                  "closeButton": false,
 	                  "debug": false,

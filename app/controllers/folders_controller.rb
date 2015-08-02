@@ -48,16 +48,27 @@ class FoldersController < ApplicationController
   end
 
   def update
-    @folder = current_user.folders.find(params[:id])
-    @folder.update_attributes(folder_params)
+    @folder = current_user.folders.find(params[:folder_id])
+    #@folder.update_attributes(folder_params)
     @parent_folder = @folder.parent
 
-    if @parent_folder
-      redirect_to browse_path(@parent_folder)
+    respond_to do |format|
+      if @folder.update_attributes(folder_params)
 
-    else
-      redirect_to root_path
+        format.html { redirect_to(@folder, :notice => 'User was successfully updated.') }
+        format.json { respond_with_bip(@folder) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@folder) }
+      end
     end
+
+    # if @parent_folder
+    #   redirect_to browse_path(@parent_folder)
+
+    # else
+    #   redirect_to root_path
+    # end
   end
 
   def destroy

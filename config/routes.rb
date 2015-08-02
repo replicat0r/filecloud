@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   match 'cabinets/get/:id' => "cabinets#get", :as => "download" ,via: [:get]
   get "browse/:folder_id/new_folder" => "folders#new", :as => "new_sub_folder"
   get "browse/:folder_id/new_file" => "cabinets#new", :as => "new_sub_file"
-  match "browse/:folder_id/rename" => "folders#edit", :as => "rename_folder" ,via: [:get,:patch]
+  match "browse/:folder_id/rename" => "folders#update", :as => "rename_folder" ,via: [:get,:put]
 end

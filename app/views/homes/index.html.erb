@@ -23,9 +23,15 @@
   <div class="file_last_updated_header">Modified</div>
 </div>
 <div class="asset_list">
-  <% @folders.each do |folder| %>
+  <% @folders.each_with_index do |folder,i| %>
   <div class="asset_details folder">
-    <div class="file_name"><i class="fa fa-folder-o"></i> <%= link_to folder.name, browse_path(folder) %></div>
+    <div class="file_name"><i class="fa fa-folder-o"></i> 
+
+
+    <%=  %>
+
+
+    <%= link_to (best_in_place folder, :name, :as => :input, :activator => ".edit#{i}", :path => rename_folder_path(folder)), browse_path(folder) %></div>
     <div class="file_size"> - </div>
     <div class="file_last_updated"> - </div>
     <div class="actions">
@@ -33,7 +39,8 @@
         <%= link_to "Share" %>
       </div>
       <div class="rename">
-        <%= link_to "Rename", rename_folder_path(folder) %>
+        <a href="#" class="edit<%="#{i}" %>">Edit</a>
+        <%# link_to "Rename", rename_folder_path(folder) %>
       </div>
       <div class="delete">
       <%= link_to "Delete", folder, :confirm => 'Are you sure?', :method => :delete %>           </div>

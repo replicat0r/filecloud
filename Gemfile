@@ -10,6 +10,7 @@ gem "paperclip", "~> 4.3"
 gem 'devise'
 gem 'bootstrap-material-design'
 gem 'acts_as_tree', '~> 2.2.0'
+gem 'best_in_place', '~> 3.0.1'
 
 gem 'toastr-rails'
 
