@@ -11,6 +11,12 @@ gem 'devise'
 gem 'bootstrap-material-design'
 gem 'acts_as_tree', '~> 2.2.0'
 gem 'best_in_place', '~> 3.0.1'
+gem 'sweet-alert'
+gem 'sweet-alert-confirm', '~> 0.1.0'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-sweetalert'
+end
 
 gem 'toastr-rails'
 

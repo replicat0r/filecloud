@@ -51,7 +51,18 @@
           <%# link_to "Rename", rename_folder_path(folder) %>
         </span>
         <span class="">
-        <%= link_to "Delete", folder, :confirm => 'Are you sure?', :method => :delete %>
+        <%# link_to "Delete", folder, :confirm => 'Are you sure?', :method => :delete %>
+
+
+        <%= link_to '<button class="btn btn-xs btn-danger" >Delete</button>'.html_safe,  folder, method: "delete", data: {
+    confirm: 'Are you sure you want to delete this folder?',
+    :'confirm-button-text' => 'Yes',
+    :'cancel-button-text' => 'No',
+    type: 'error',
+    text: "This can't be undone",
+    }   %>
+
+
         </span>
       </td>
     </tr>
@@ -63,10 +74,20 @@
       <td class=""><%= cabinet.uploaded_file_updated_at %></td>
       <td class="action">
         <span class="">
-          <%= link_to "Download", download_url(cabinet) %>
+          <%= link_to '<button class="btn btn-xs btn-info" >Download</button>'.html_safe, download_url(cabinet) %>
         </span>
         <span class="">
-        <%= link_to "Delete", cabinet, :confirm => 'Are you sure?', :method => :delete %>           </span>
+        <%# link_to "Delete", cabinet, :confirm => 'Are you sure?', :method => :delete %>  
+
+        <%= link_to '<button class="btn btn-xs btn-danger" >Delete</button>'.html_safe,  cabinet, method: "delete", data: {
+    confirm: 'Are you sure you want to delete this file?',
+    :'confirm-button-text' => 'Yes',
+    :'cancel-button-text' => 'No',
+    type: 'error',
+    text: "This can't be undone",
+    }   %>
+
+                 </span>
       </td>
       </tr>
       <% end %>

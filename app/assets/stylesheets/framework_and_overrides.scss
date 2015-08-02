@@ -111,6 +111,11 @@ section {
   span{
     padding:10px 5px;
   }
+.btn.btn-xs {
+    padding: 4px 6px 3px;
+    font-size: 9px;
+    margin:0;
+}
 
 } 
 
@@ -121,13 +126,13 @@ section {
 .table-container{
   padding:10px 3%;
 }
-.asset_details .share a,.asset_details .rename a,.asset_details .download a,.asset_details .delete a{ 
+.asset_details .share a,.asset_details .rename a,.asset_details .download a,.asset_details .delete { 
     border: 1px solid #CFE9FF; 
     font-size: 11px; 
     margin-left: 5px; 
     padding: 0 2px; 
 } 
-.asset_details .share a:hover,.asset_details .rename a:hover,.asset_details .download a:hover,.asset_details .delete a:hover{ 
+.asset_details .share a:hover,.asset_details .rename a:hover,.asset_details .download a:hover,.asset_details .delete:hover{ 
     border:1px solid #8FCDFF; 
 } 
   

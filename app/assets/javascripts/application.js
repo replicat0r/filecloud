@@ -16,6 +16,8 @@
 //= require bootstrap-material-design
 //= require toastr
 //= require best_in_place
+//= require sweet-alert
+//= require sweet-alert-confirm
 //= require_tree .
 
 
