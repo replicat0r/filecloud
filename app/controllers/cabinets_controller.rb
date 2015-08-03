@@ -19,7 +19,7 @@ class CabinetsController < ApplicationController
   end
 
   def create
-    @folder_id = params[:cabinet][:folder_id]
+    @folder_id =  params[:folder_id]
 
     @cabinet = current_user.cabinets.build(uploaded_file: params[:file])
     @cabinet.folder_id = @folder_id

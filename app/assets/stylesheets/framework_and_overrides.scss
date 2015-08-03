@@ -42,7 +42,7 @@ main {
   background-color:white;
   padding-bottom: 80px;
   width: 100%;
-  min-height: 95vh;
+  min-height: 100vh;
 
   }
 section {
@@ -166,6 +166,10 @@ section {
 }
 
 
+.dropzone{
+  min-height: 63vh;
+  border:1px solid rgba(0,0,0,0.0);
+}
 #menu { 
     padding:0 20px; 
     margin-bottom:20px ; 
@@ -216,6 +220,11 @@ section {
     -moz-transition: all 0.2s ease-in-out !important;
     -o-transition: all 0.2s ease-in-out !important;
     transition: all 0.2s ease-in-out !important;
+    .dropzone{
+      min-height: 150px;
+        border:1px solid rgba(0,0,0,0.1);
+
+    }
 }
 
 .modal.in .modal-dialog {
@@ -250,3 +259,5 @@ thead {
 
   }
 }
+
+

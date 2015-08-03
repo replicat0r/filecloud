@@ -1,3 +1,9 @@
+<script type="text/javascript">
+  
+var myDropzone = new Dropzone(".homes");
+
+</script>
+
 <% unless user_signed_in? %>
 <div class="text-center">
   <h3>Welcome to File Cloud</h3>
@@ -25,6 +31,11 @@
 <div class="clear"></div>
 
 </div>
+
+<%= form_tag '/cabinets', method: :post, class: "dropzone", id: "media-dropzone" do %>
+<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+
+<%= hidden_field_tag :folder_id , "#{@current_folder.id if @current_folder}" %>
 <div class="col-sm-12 table-container">
 <table class="table table-hover">
   <thead>
@@ -136,4 +147,6 @@
       </div>
       <% end %>
     </div> -->
+    <% end %>
+
     <% end %>
