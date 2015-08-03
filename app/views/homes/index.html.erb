@@ -26,7 +26,7 @@
 
 </div>
 <div class="col-sm-12 table-container">
-<table class="table">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>File Name</th>
@@ -38,7 +38,7 @@
   <tbody>
     <% @folders.each_with_index do |folder,i| %>
     <tr>
-      <td class=""><i class="fa fa-folder-o"></i>
+      <td style="width: 45%"><i class="fa fa-folder-o"></i>
       <%= link_to (best_in_place folder, :name, :as => :input, :activator => ".edit#{i}", :path => rename_folder_path(folder)), browse_path(folder) %></td>
       <td class=""> - </td>
       <td class=""> - </td>
@@ -69,7 +69,7 @@
     <% end %>
     <% @cabinets.each do |cabinet| %>
     <tr>
-      <td class=""><i class="fa fa-file-o">  </i>  <%= link_to cabinet.uploaded_file_file_name, download_url(cabinet) %></td>
+      <td style="width: 45%"><i class="fa fa-file-o">  </i>  <%= link_to cabinet.uploaded_file_file_name, download_url(cabinet) %></td>
       <td class=""><%= number_to_human_size(cabinet.file_size, :precision => 2)%></td>
       <td class=""><%= cabinet.uploaded_file_updated_at %></td>
       <td class="action">
