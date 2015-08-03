@@ -19,15 +19,23 @@ class CabinetsController < ApplicationController
   end
 
   def create
-    @cabinet = current_user.cabinets.build(cabinet_params)
-    flash[:notice] = "Successfully uploaded the file."
-    if @cabinet.save
-      if @cabinet.folder
-        redirect_to browse_path(@cabinet.folder)
-      else
+    @folder_id = params[:cabinet][:folder_id]
 
-        redirect_to root_path
+    @cabinet = current_user.cabinets.build(uploaded_file: params[:file])
+    @cabinet.folder_id = @folder_id
+    #flash[:notice] = "Successfully uploaded the file."
+    if @cabinet.save
+      respond_to do |format|
+        format.json{ render :json => @cabinet }
       end
+
+
+      # if @cabinet.folder
+      #   redirect_to browse_path(@cabinet.folder)
+      # else
+
+      #   redirect_to root_path
+      # end
 
     else
       render :action => 'new'
@@ -76,6 +84,6 @@ class CabinetsController < ApplicationController
   # Be sure to update your create() and update() controller methods.
 
   def cabinet_params
-    params.require(:cabinet).permit(:uploaded_file,:folder_id)
+    params.require(:cabinet).permit(:folder_id)
   end
 end

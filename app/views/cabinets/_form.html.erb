@@ -1,10 +1,11 @@
-<%= form_for @cabinet, :html => {:multipart => true} do |f| %> 
+<%= form_for @cabinet, :html => {:multipart => true, class:"dropzone filedropzone"} do |f| %> 
   <%# f.error_messages %> 
-    <p> 
-        <%= f.label :uploaded_file, "File" %><br /> 
-        <%= f.file_field :uploaded_file %> 
+           <%= f.hidden_field :folder_id %>
 
-         <%= f.hidden_field :folder_id %>
-      </p> 
-  <p><%= f.submit "Upload" %></p> 
+   <!--  <p> 
+        <%# f.label :uploaded_file, "File" %><br /> 
+        <%# f.file_field :uploaded_file %> 
+
+      </p>  -->
+<!--   <p><%# f.submit "Upload" %></p>  -->
 <% end %>
