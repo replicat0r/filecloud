@@ -45,8 +45,8 @@ $(document).ready(function() {
   
     inClass               :   'fade-in',
     outClass              :   'fade-out',
-    inDuration            :    1500,
-    outDuration           :    800,
+    inDuration            :    500,
+    outDuration           :    600,
     linkElement           :   '.animsition-link',
     // e.g. linkElement   :   'a:not([target="_blank"]):not([href^=#])'
     loading               :    true,
@@ -64,6 +64,64 @@ $(document).ready(function() {
     overlayClass          :   'animsition-overlay-slide',
     overlayParentElement  :   'body'
   });
+
+
+Dropzone.options.mediaDropzone = {
+    //dictDefaultMessage:"hello",
+    // previewTemplate: "<div class='dz-preview dz-file-preview'> <div class='dz-details'> <div class='dz-filename'><span data-dz-name></span></div> <div class='dz-size' data-dz-size></div> <img data-dz-thumbnail /> </div> <div class='dz-progress'><span class='dz-upload' data-dz-uploadprogress></span></div> <div class='dz-success-mark'><span>✔</span></div> <div class='dz-error-mark'><span>✘</span></div> <div class='dz-error-message'><span data-dz-errormessage></span></div> </div>",
+    previewsContainer: ".drop-area",
+    init: function() {
+        this.on("dragenter", function(file) {
+            $(".drop-area").addClass('show')
+        }),
+        this.on("dragend", function(file) {
+        	console.log('exits')
+            $(".drop-area").removeClass('show')
+        }),
+        this.on("addedfile", function(file) {
+            $(".drop-area").addClass('show')
+        }),
+        // this.on("dragend", function(file) {
+        //     $(".drop-area").removeClass('show')
+        // }),
+        // this.on("dragleave", function(file) {
+        //     $(".drop-area").removeClass('show')
+        // }),
+        this.on("drop", function(file) {
+            $(".dummy-area").fadeOut();
+        }),
+        this.on("success", function(file) {
+			       var _this = this;
+
+        	setTimeout(function(){
+			        $(".drop-area").removeClass('show')
+
+			        setTimeout(function(){
+								 _this.removeAllFiles();
+			          $(".dummy-area").show();}, 1000);
+			         
+
+
+			    },2500);
+
+        })
+        // this.on("addedfile", function(file) {
+        // // Create the cancel link
+        //     var cancelLink = Dropzone.createElement('<a href="javascript:undefined;">Cancel upload</a>');
+        //     var that = this
+        //     // Add the cancel link to the preview element
+        //     // If you want it to replace another element, you can do that your way of course.
+        //     file.previewElement.appendChild(cancelLink);
+        //     // Now the most important part: attach the event listener here:
+        //     cancelLink.addEventListener("click", function(e) {
+        //         e.preventDefault();
+        //         // Referencing file here as closure
+        //         that.removeFile(file);
+        //     });
+        // });
+    }
+  };
+
 	
 	});
 

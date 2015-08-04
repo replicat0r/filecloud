@@ -1,8 +1,3 @@
-<script type="text/javascript">
-  
-var myDropzone = new Dropzone(".homes");
-
-</script>
 
 <% unless user_signed_in? %>
 <div class="text-center">
@@ -11,142 +6,89 @@ var myDropzone = new Dropzone(".homes");
 </div>
 <% else %>
 <div class="row">
-
-<div class="col-sm-7">
-<%= render :partial => "breadcrumbs" %>
+  <div class="col-sm-7">
+    <%= render :partial => "breadcrumbs" %>
+  </div>
+  <div id="menu" class="pull-right">
+    <ul id= "top_menu">
+      <% if @current_folder %>
+      <li><%= link_to '<i class="fa fa-cloud-upload"></i> Upload'.html_safe, new_sub_file_path(@current_folder),remote:true,class: 'btn btn-info btn-xs'  %></li>
+      <li><%= link_to '<i class="fa fa-folder-o"></i> New Folder'.html_safe, new_sub_folder_path(@current_folder),remote:true,class: 'btn btn-info btn-xs'  %></li>
+      <% else %>
+      <li><%= link_to '<i class="fa fa-cloud-upload"></i> Upload'.html_safe, new_cabinet_path,remote:true,class: 'btn btn-info btn-xs' %></li>
+      <li><%= link_to '<i class="fa fa-folder-o"></i> New Folder'.html_safe, new_folder_path, remote:true,class: 'btn btn-info btn-xs' %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="clear"></div>
 </div>
-
-<div id="menu" class="pull-right">
-  <ul id= "top_menu">
-    <% if @current_folder %>
-    <li><%= link_to '<i class="fa fa-cloud-upload"></i> Upload'.html_safe, new_sub_file_path(@current_folder),remote:true,class: 'btn btn-info btn-xs'  %></li>
-    <li><%= link_to '<i class="fa fa-folder-o"></i> New Folder'.html_safe, new_sub_folder_path(@current_folder),remote:true,class: 'btn btn-info btn-xs'  %></li>
-    <% else %>
-    <li><%= link_to '<i class="fa fa-cloud-upload"></i> Upload'.html_safe, new_cabinet_path,remote:true,class: 'btn btn-info btn-xs' %></li>
-    <li><%= link_to '<i class="fa fa-folder-o"></i> New Folder'.html_safe, new_folder_path, remote:true,class: 'btn btn-info btn-xs' %></li>
-    <% end %>
-  </ul>
-</div>
-
-<div class="clear"></div>
-
-</div>
-
 <%= form_tag '/cabinets', method: :post, class: "dropzone", id: "media-dropzone" do %>
-<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-
 <%= hidden_field_tag :folder_id , "#{@current_folder.id if @current_folder}" %>
 <div class="col-sm-12 table-container">
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>File Name</th>
-      <th>Size</th>
-      <th>Modified</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @folders.each_with_index do |folder,i| %>
-    <tr>
-      <td style="width: 45%"><i class="fa fa-folder-o"></i>
-      <%= link_to (best_in_place folder, :name, :as => :input, :activator => ".edit#{i}", :path => rename_folder_path(folder)), browse_path(folder) %></td>
-      <td class=""> - </td>
-      <td class=""> - </td>
-      <td class="action">
-        <span class="">
-          <%= link_to "Share" %>
-        </span>
-        <span class="">
-          <a href="#" class="edit<%="#{i}" %>">Edit</a>
-          <%# link_to "Rename", rename_folder_path(folder) %>
-        </span>
-        <span class="">
-        <%# link_to "Delete", folder, :confirm => 'Are you sure?', :method => :delete %>
-
-
-        <%= link_to '<button class="btn btn-xs btn-danger" >Delete</button>'.html_safe,  folder, method: "delete", data: {
-    confirm: 'Are you sure you want to delete this folder?',
-    :'confirm-button-text' => 'Yes',
-    :'cancel-button-text' => 'No',
-    type: 'error',
-    text: "This can't be undone",
-    }   %>
-
-
-        </span>
-      </td>
-    </tr>
-    <% end %>
-    <% @cabinets.each do |cabinet| %>
-    <tr>
-      <td style="width: 45%"><i class="fa fa-file-o">  </i>  <%= link_to cabinet.uploaded_file_file_name, download_url(cabinet) %></td>
-      <td class=""><%= number_to_human_size(cabinet.file_size, :precision => 2)%></td>
-      <td class=""><%= cabinet.uploaded_file_updated_at %></td>
-      <td class="action">
-        <span class="">
-          <%= link_to '<button class="btn btn-xs btn-info" >Download</button>'.html_safe, download_url(cabinet) %>
-        </span>
-        <span class="">
-        <%# link_to "Delete", cabinet, :confirm => 'Are you sure?', :method => :delete %>  
-
-        <%= link_to '<button class="btn btn-xs btn-danger" >Delete</button>'.html_safe,  cabinet, method: "delete", data: {
-    confirm: 'Are you sure you want to delete this file?',
-    :'confirm-button-text' => 'Yes',
-    :'cancel-button-text' => 'No',
-    type: 'error',
-    text: "This can't be undone",
-    }   %>
-
-                 </span>
-      </td>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>File Name</th>
+        <th>Size</th>
+        <th>Modified</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @folders.each_with_index do |folder,i| %>
+      <tr>
+        <td style="width: 45%"><i class="fa fa-folder-o"></i>
+        <%= link_to (best_in_place folder, :name, :as => :input, :activator => ".edit#{i}", :path => rename_folder_path(folder)), browse_path(folder) %></td>
+        <td class=""> - </td>
+        <td class=""> - </td>
+        <td class="action">
+          <span class="">
+            <%= link_to "Share" %>
+          </span>
+          <span class="">
+            <a href="#" class="edit<%="#{i}" %>">Edit</a>
+            <%# link_to "Rename", rename_folder_path(folder) %>
+          </span>
+          <span class="">
+            <%# link_to "Delete", folder, :confirm => 'Are you sure?', :method => :delete %>
+            <%= link_to '<button class="btn btn-xs btn-danger" >Delete</button>'.html_safe,  folder, method: "delete", data: {
+            confirm: 'Are you sure you want to delete this folder?',
+            :'confirm-button-text' => 'Yes',
+            :'cancel-button-text' => 'No',
+            type: 'error',
+            text: "This can't be undone",
+            }   %>
+          </span>
+        </td>
+      </tr>
+      <% end %>
+      <% @cabinets.each do |cabinet| %>
+      <tr>
+        <td style="width: 45%"><i class="fa fa-file-o">  </i>  <%= link_to cabinet.uploaded_file_file_name, download_url(cabinet) %></td>
+        <td class=""><%= number_to_human_size(cabinet.file_size, :precision => 2)%></td>
+        <td class=""><%= cabinet.uploaded_file_updated_at %></td>
+        <td class="action">
+          <span class="">
+            <%= link_to '<button class="btn btn-xs btn-info" >Download</button>'.html_safe, download_url(cabinet) %>
+          </span>
+          <span class="">
+            <%# link_to "Delete", cabinet, :confirm => 'Are you sure?', :method => :delete %>
+            <%= link_to '<button class="btn btn-xs btn-danger" >Delete</button>'.html_safe,  cabinet, method: "delete", data: {
+            confirm: 'Are you sure you want to delete this file?',
+            :'confirm-button-text' => 'Yes',
+            :'cancel-button-text' => 'No',
+            type: 'error',
+            text: "This can't be undone",
+            }   %>
+          </span>
+        </td>
       </tr>
       <% end %>
     </tbody>
     
   </table>
-  </div>
-  <!--
-  <div class="asset_list_header">
-    <div class="file_name_header">File Name</div>
-    <div class="file_size_header">Size</div>
-    <div class="file_last_updated_header">Modified</div>
-  </div>
-  --><!--
-  <div class="asset_list">
-    <% @folders.each_with_index do |folder,i| %>
-    <div class="asset_details folder">
-      <div class="file_name"><i class="fa fa-folder-o"></i>
-      <%= link_to (best_in_place folder, :name, :as => :input, :activator => ".edit#{i}", :path => rename_folder_path(folder)), browse_path(folder) %></div>
-      <div class="file_size"> - </div>
-      <div class="file_last_updated"> - </div>
-      <div class="actions">
-        <div class="share">
-          <%= link_to "Share" %>
-        </div>
-        <div class="rename">
-          <a href="#" class="edit<%="#{i}" %>">Edit</a>
-          <%# link_to "Rename", rename_folder_path(folder) %>
-        </div>
-        <div class="delete">
-        <%= link_to "Delete", folder, :confirm => 'Are you sure?', :method => :delete %>           </div>
-      </div>
-    </div>
-    <% end %>
-    <% @cabinets.each do |cabinet| %>
-    <div class="asset_details">
-      <div class="file_name"><i class="fa fa-file-o">  </i>  <%= link_to cabinet.uploaded_file_file_name, download_url(cabinet) %></div>
-      <div class="file_size"><%= number_to_human_size(cabinet.file_size, :precision => 2)%></div>
-      <div class="file_last_updated"><%= cabinet.uploaded_file_updated_at %></div>
-      <div class="actions">
-        <div class="download">
-          <%= link_to "Download", download_url(cabinet) %>
-        </div>
-        <div class="delete">
-        <%= link_to "Delete", cabinet, :confirm => 'Are you sure?', :method => :delete %>           </div>
-      </div>
-      <% end %>
-    </div> -->
-    <% end %>
+</div>
+<%= render 'dummy_file' %>
+<% end %>
+<% end %>
 
-    <% end %>

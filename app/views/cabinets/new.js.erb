@@ -5,10 +5,10 @@ var mediaDropzone = new Dropzone(".filedropzone");
 $('.createfolder').modal('show')
 
    mediaDropzone.on("success", function(file, responseText) {
-
+    var _this = this;
+    appendContent(responseText.file_name.url, responseText.id);
     setTimeout(function(){
       $('.createfolder').modal('hide');
       _this.removeAllFiles();
     },2500);
   });
-
