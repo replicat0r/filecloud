@@ -31,7 +31,9 @@
     <main role="main" class="">
     <div class="container">
         <div class="row">
-          <h1 class="logo col-sm-8"> <i class="fa fa-cloud"></i> File Cloud </h1>
+          <%= link_to( root_path ) do %><h1 class="logo col-sm-8"> <i class="fa fa-cloud"></i> File Cloud </h1>
+
+          <% end %>
           <%= render 'layouts/login_status' %>
         </div>
         <div class="animsition">
